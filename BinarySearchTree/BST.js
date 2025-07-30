@@ -64,6 +64,32 @@ class BST {
           traverse(this.root);
           return result;
      }
+     preOrder() {
+          const result = [];
+          function traverse(node) {
+               if (!node) return;
+
+               result.push(node.value);
+               traverse(node.left);
+               traverse(node.right);
+          }
+          traverse(this.root);
+          return result;
+     }
+     postOrder() {
+          const result = [];
+
+          function traverse(node) {
+               if (!node) return;
+
+               traverse(node.left);
+               traverse(node.right);
+               result.push(node.value);
+          }
+          traverse(this.root);
+          return result;
+
+     }
 }
 
 const tree = new BST();
@@ -79,4 +105,6 @@ console.log(tree.contains(7));
 console.log(tree.contains(12));
 
 
-console.log(tree.inOrder());
+console.log("InOrder", tree.inOrder());
+console.log("PreOrder", tree.preOrder());
+console.log("PostOrder", tree.postOrder());
