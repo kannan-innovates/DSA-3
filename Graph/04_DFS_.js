@@ -14,6 +14,7 @@ class Graph {
           this.adjList[v1].push(v2);
           this.adjList[v2].push(v1);
      }
+     //recursive
      dfs(start, visited = new Set()) {
           visited.add(start);
           console.log(start);
@@ -25,6 +26,25 @@ class Graph {
                }
           }
      }
+     //using stack 
+     DFSIterative(start){
+          let stack = [start];
+          let visited = new Set();
+          visited.add(start);
+
+          while (stack.length > 0){
+               let vertex = stack.pop();
+               console.log(vertex);
+
+               for ( let neighbor of this.adjList[vertex]){
+                    if (!visited.has(neighbor)){
+                         stack.push(neighbor);
+                         visited.add(neighbor);
+                    }
+               }
+          }
+     }
+
 }
 let g = new Graph();
 g.addEdges("A", "B");
@@ -33,4 +53,5 @@ g.addEdges("B", "D");
 g.addEdges("B", "E");
 g.addEdges("C", "F");
 
-g.dfs("A");
+// g.dfs("A");
+g.DFSIterative("A")
